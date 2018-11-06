@@ -1,0 +1,8 @@
+<?php
+//check se serve ancora
+
+$middleware=['web', 'checkinstall','permuser', 'auth'];
+Route::group(['prefix' => 'admin', 'middleware' => $middleware, 'namespace' => '\XRA\Backend\Controllers\Admin'], function () {
+    Route::get('/', 'BackendController@index');
+    Route::get('_menufull/delete', 'MenufullController@delete')->name('menufull.delete');
+});

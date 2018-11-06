@@ -1,0 +1,427 @@
+{{ Theme::add('/theme/bc/bootstrap/dist/css/bootstrap.min.css') }}
+{{ Theme::add('/theme/bc/font-awesome/css/font-awesome.min.css') }}
+
+{{--
+    <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet" type="text/css">
+    <link href="https://fonts.googleapis.com/css?family=Lato:400,700,400italic,700italic" rel="stylesheet" type="text/css">
+    <link href="https://fonts.googleapis.com/css?family=Indie+Flower" rel='stylesheet' type='text/css'>
+
+    <link href='https://cdnjs.cloudflare.com/ajax/libs/highlight.js/8.3/styles/github.min.css' rel='stylesheet' type='text/css'>
+--}}
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+    {{ Theme::add('/theme/bc/gridstack/dist/gridstack.css') }}
+   @push('styles')
+   <style type="text/css">
+        .grid-stack {
+            background: lightgoldenrodyellow;
+        }
+
+        .grid-stack-item-content {
+            color: #2c3e50;
+            text-align: center;
+            background-color: #18bc9c;
+        }
+
+
+        /* .modal-fullscreen */
+/*
+.modal-fullscreen {
+  background: transparent;
+}
+.modal-fullscreen .modal-content {
+  background: transparent;
+  border: 0;
+  -webkit-box-shadow: none;
+  box-shadow: none;
+}
+.modal-backdrop.modal-backdrop-fullscreen {
+  background: #ffffff;
+}
+.modal-backdrop.modal-backdrop-fullscreen.in {
+  opacity: .97;
+  filter: alpha(opacity=97);
+}
+*/
+/* .modal-fullscreen size: we use Bootstrap media query breakpoints */
+
+.modal-fullscreen .modal-dialog {
+  margin: 0;
+  margin-right: auto;
+  margin-left: auto;
+  width: 100%;
+}
+@media (min-width: 768px) {
+  .modal-fullscreen .modal-dialog {
+    width: 750px;
+  }
+}
+@media (min-width: 992px) {
+  .modal-fullscreen .modal-dialog {
+    width: 970px;
+  }
+}
+@media (min-width: 1200px) {
+  .modal-fullscreen .modal-dialog {
+     width: 1170px;
+  }
+}
+
+
+/*
+Full screen Modal 
+*/
+.fullscreen-modal .modal-dialog {
+  margin: 0;
+  margin-right: auto;
+  margin-left: auto;
+  width: 100%;
+}
+@media (min-width: 768px) {
+  .fullscreen-modal .modal-dialog {
+    width: 750px;
+  }
+}
+@media (min-width: 992px) {
+  .fullscreen-modal .modal-dialog {
+    width: 970px;
+  }
+}
+@media (min-width: 1200px) {
+  .fullscreen-modal .modal-dialog {
+     width: 1170px;
+  }
+}
+
+
+    </style>
+    @endpush
+{{-- questo qua sotto e' il pezzo che vado a riclonare  --}}
+<div style="display:none">
+<div id='griditem' >
+	<div class="grid-stack-item-content" >
+		<div class="xcontent">
+		<div class="btn-group" >
+			<a class="btn btn-default" href="#" data-toggle="modal" data-target="#myModal">
+				<i class="fa fa-pencil"></i>
+			</a>
+			<a class="btn btn-danger" href="#">
+				<i class="fa fa-trash-o remove"></i>
+			</a>
+		</div>
+		<br style="clear:both;"/>
+		<input type="text" name="content_type" value="text" class="form-input"/>
+		<textarea name="content"></textarea>
+		{{ csrf_field() }}
+		</div>
+	</div>	
+</div>
+</div>
+
+    
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12 text-center">
+                     <h1>Float grid </h1>
+				        <div>
+				            <a class="btn btn-default" id="add-new-widget" href="#">Add Widget</a>
+				            <a class="btn btn-default" id="save-grid" href="#">Save Grid</a>
+            				<a class="btn btn-default" id="load-grid" href="#">Load Grid</a>
+            				<a class="btn btn-default" id="clear-grid" href="#">Clear Grid</a>
+				        </div>
+                </div>
+            </div>
+
+            <div class="grid-stack" data-gs-width="12" data-gs-animate="yes">
+            </div>
+            <textarea id="saved-data" cols="100" rows="20" readonly="readonly"></textarea>
+        </div>
+   
+    <!-- Modal -->
+	<div class="modal fullscreen-modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+	  <div class="modal-dialog" role="document">
+	    <div class="modal-content">
+	      <div class="modal-header">
+	        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+	        <h4 class="modal-title" id="myModalLabel">Modal title</h4>
+	      </div>
+	      <div class="modal-body">
+	        <textarea name="content"></textarea>
+	      </div>
+	      <div class="modal-footer">
+	        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+	        <button type="button" id="btnSave" class="btn btn-primary">Save changes</button>
+	      </div>
+	    </div>
+	  </div>
+	</div>
+
+   {{--  
+    <!-- Scroll to Top Button (Only visible on small and extra-small screen sizes) -->
+    <div class="scroll-top page-scroll visible-xs visble-sm">
+        <a class="btn btn-primary" href="#page-top">
+            <i class="fa fa-chevron-up"></i>
+        </a>
+    </div>
+--}}
+   
+
+  
+    {{-- Syntax highlighting for the Web  
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/8.3/highlight.min.js"></script>
+	--}}
+   
+    {{ Theme::add('/theme/bc/jquery/dist/jquery.min.js') }}
+ 	{{ Theme::add('/theme/bc/jquery-ui/jquery-ui.min.js') }}
+ 	{{ Theme::add('/theme/bc/jqueryui-touch-punch/jquery.ui.touch-punch.min.js') }}
+
+   	{{ Theme::add('/theme/bc/lodash/dist/lodash.min.js') }}
+
+	{{ Theme::add('/theme/bc/jquery.easing/js/jquery.easing.min.js') }}
+
+
+    {{ Theme::add('/theme/bc/gridstack/dist/gridstack.js') }}
+    {{ Theme::add('/theme/bc/gridstack/dist/gridstack.jQueryUI.js') }}
+
+	{{ Theme::add('/theme/bc/tinymce/tinymce.js') }}
+
+@push('scripts')
+    <script type="text/javascript">
+       // hljs.initHighlightingOnLoad();
+        $(function () {
+        	var options = {
+                width: 12,
+                alwaysShowResizeHandle: /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent),
+                resizable: {
+                    handles: 'e, se, s, sw, w'
+                }
+            };
+
+            $('.grid-stack').gridstack(options);
+
+            new function () {
+            	
+                this.serializedData = [
+                    {x: 0, y: 0, width: 2, height: 2},
+                    {x: 3, y: 1, width: 1, height: 2},
+                    {x: 4, y: 1, width: 1, height: 1},
+                    {x: 2, y: 3, width: 3, height: 1},
+                    {x: 1, y: 4, width: 1, height: 1},
+                    {x: 1, y: 3, width: 1, height: 1},
+                    {x: 2, y: 4, width: 1, height: 1},
+                    {x: 2, y: 5, width: 1, height: 1}
+                ];
+                
+
+                this.grid = $('.grid-stack').data('gridstack');
+
+               
+
+                this.loadGrid = function () {
+                    this.grid.removeAll();
+                    var items = GridStackUI.Utils.sort(this.serializedData);
+                    _.each(items, function (node) {
+                        this.grid.addWidget($('<div><div class="grid-stack-item-content" /><div/>'),
+                            node.x, node.y, node.width, node.height);
+                    }, this);
+                    return false;
+                }.bind(this);
+
+                this.saveGrid = function () {
+                    this.serializedData = _.map($('.grid-stack > .grid-stack-item:visible'), function (el) {
+                        el = $(el);
+                        var node = el.data('_gridstack_node');
+                        var $data={};
+                        $(el).find('input, select, textarea').each(function() {
+							$k=$(this).attr('name');
+							$v=$(this).val();
+                        	//alert($k+'  '+$v);
+							$data[$k]=$v; 
+						});
+                        $data.x=node.x;
+                        $data.y=node.y;
+                        $data.width=node.width;
+                        $data.height=node.height;
+                        
+                        return $data;
+                        /*
+                        return {
+                        	data: $data,
+                            x: node.x,
+                            y: node.y,
+                            width: node.width,
+                            height: node.height
+                        };
+                        */
+                    }, this);
+                    $('#saved-data').val(JSON.stringify(this.serializedData, null, '    '));
+                    return false;
+                }.bind(this);
+
+                this.clearGrid = function () {
+                    this.grid.removeAll();
+                    return false;
+                }.bind(this);
+
+                this.addNewWidget = function () {
+                    var node = this.items.pop() || {
+                               x:0,
+                               y:0,
+                               width:3,
+                               height:3,
+
+                            };
+                    this.grid.addWidget($('#griditem').clone(),
+                        node.x, node.y, node.width, node.height);
+                    return false;
+                }.bind(this);
+
+
+                $('#add-new-widget').click(this.addNewWidget);
+                $('#save-grid').click(this.saveGrid);
+                $('#load-grid').click(this.loadGrid);
+                $('#clear-grid').click(this.clearGrid);
+            };
+
+            $('body').on('click', '.remove', function (e) {
+			    e.preventDefault();
+			    var grid = $('.grid-stack').data('gridstack'),
+			        el = $(this).closest('.grid-stack-item')
+
+			    grid.remove_widget(el);
+			});
+
+            /*
+            $(".modal-fullscreen").on('show.bs.modal', function () {
+			  setTimeout( function() {
+			    $(".modal-backdrop").addClass("modal-backdrop-fullscreen");
+			  }, 0);
+			});
+			$(".modal-fullscreen").on('hidden.bs.modal', function () {
+			  $(".modal-backdrop").addClass("modal-backdrop-fullscreen");
+			});
+			*/
+        });
+
+
+        tinymce.init({
+    selector:   "textarea.tinymce",
+    width:      '100%',
+    height:     '100%',
+    plugins:     ["anchor link"],
+    statusbar:  true,
+	menubar:    true,
+    toolbar: "link anchor | alignleft aligncenter alignright alignjustify"
+                    
+});
+
+// Prevent bootstrap dialog from blocking focusin
+$(document).on('focusin', function(e) {
+    if ($(e.target).closest(".mce-window").length) {
+		e.stopImmediatePropagation();
+	}
+});
+
+var $invoker;
+$('#myModal').on('show.bs.modal', function (e) {
+  $invoker = $(e.relatedTarget);
+
+});
+
+$('#open').click(function() {
+	$("#dialog").dialog({
+		width: 800,
+		modal: true
+	});
+});
+
+$('#btnSave').click(function() {
+	$val=$('textarea[name="modal_content"]').val();
+  	//alert($invoker.parent().parent().find('textarea[name="content[]"]').val());
+  	$invoker.parent().parent().find('textarea[name="content"]').val($val);
+   $('#myModal').modal('hide');
+});
+
+$("#myModal").on("show.bs.modal", function(e) {
+		var $myModal=$(this);
+		$myModal.find(".modal-body").html('<i class="fa fa-spinner fa-spin fa-3x fa-fw"></i><span class="sr-only">Loading...</span>');
+    	var link = $(e.relatedTarget);
+		var $data={};
+		var all=link.parents(".grid-stack-item-content").find('input, select, textarea').each(function() {
+			$k=$(this).attr('name');//.slice(0,-2); // per togliere []
+			$v=$(this).val();
+			//alert($k+'   '+$v);
+			$data[$k]=$v; 
+		}); 
+
+
+		//alert($data['_token']);
+
+		var $method='post';
+		var $token=$data['_token'];
+		$.ajax({
+			type:$method,
+			url: '../../component',
+			//_method:$method,
+			//_token:$token,
+			//contentType: "application/json; charset=utf-8",
+    		//dataType: "json",
+    		//data:{_token:$token,_method:$method},
+			data:{_token:$token,content:$data['content'],content_type:$data['content_type'],}, 
+			
+			success: function(data, status) {
+                $myModal.find(".modal-body").html(data);  
+            },
+            error: function(XMLHttpRequest, textStatus, errorThrown) { 
+            	/*
+            	html='';
+            	for(i in XMLHttpRequest){
+            		html='<br/> '+i+'  =  '+ XMLHttpRequest[i];
+            	}
+            	alert(html);
+            	//alert('XMLHttpRequest' + XMLHttpRequest);
+                alert("Status: " + textStatus); alert("Error: " + errorThrown); 
+            	*/
+            }       
+		});
+    	
+	});
+
+
+
+
+
+    </script>
+@endpush
+<!--
+http://troolee.github.io/gridstack.js/
+https://bl.ocks.org/wheresjames/3689d262f2a0edf98eee0b6ad781e511
+https://lobianijs.com/site/lobipanel
+http://coyoteds.edlisten.com/GridstackLayoutExample.html
+
+remove che funziona
+https://jsfiddle.net/wmLk2ey7/7/    
+
+tinymce + x-editable
+https://amystechnotes.com/2015/07/07/tinymce-and-xeditable/
+
+gridstack che prende altri dati oltre alla posizione nel serialize
+http://codepen.io/delagics/pen/ezgryg
+
+x-editable un po'  avanti
+http://themes.djavaui.com/blankon-fullpack-admin-theme/production/admin/html/form-xeditable.html
+
+modal fullscreen sconosciuto ma
+http://joaopereirawd.github.io/animatedModal.js/
+
+
+
+sembra metronic..
+http://eliteadmin.themedesigner.in/demos/eliteadmin-ecommerce/panel-draggable.html
+-->

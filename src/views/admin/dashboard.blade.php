@@ -1,0 +1,1 @@
+@include('adm_theme::admin.dashboard')

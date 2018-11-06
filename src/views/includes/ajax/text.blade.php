@@ -1,0 +1,1 @@
+<textarea name="content"  style="width:100%">{{ $row['content'] }}</textarea>
