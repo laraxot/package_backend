@@ -10,13 +10,12 @@ $areas_prgs=[
 		'name'=>'profile',
 	]
 ];
-
 Route::group(
 	[
 	'prefix' => $prefix,
-	'middleware' =>$middleware, 
+	'middleware' =>$middleware,
 	'namespace'=>$namespace.'\Controllers\Admin',
-	], 
+	],
 	function () use ($areas_prgs) {
 		Route::get('/', 'BackendController@dashboard');
 		RouteTrait::dynamic_route($areas_prgs);
