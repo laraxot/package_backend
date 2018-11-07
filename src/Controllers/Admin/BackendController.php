@@ -18,6 +18,9 @@ class BackendController extends Controller{
     }
 
     public function dashboard(Request $request){
+        if ($request->routelist == 1) {
+            return ArtisanTrait::exe('route:list');
+        }
     	$view = CrudTrait::getView();
         return view($view)->with('view', $view);
     }

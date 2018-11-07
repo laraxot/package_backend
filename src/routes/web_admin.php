@@ -21,3 +21,4 @@ Route::group(
 		RouteTrait::dynamic_route($areas_prgs);
 	}
 );
+//require_once(__DIR__.'/../../../Blog/src/routes/web_admin_blog.php');
