@@ -13,6 +13,10 @@ class BackendController extends Controller{
         if ($request->routelist == 1) {
             return ArtisanTrait::exe('route:list');
         }
+        if ($request->dusk == 1) {
+          //   \Artisan::queue('command:dusk');
+            return ArtisanTrait::exe('dusk');
+        }
         $view = CrudTrait::getView();
         return view($view)->with('view', $view);
     }
