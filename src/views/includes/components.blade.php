@@ -22,6 +22,11 @@
 {{ Form::component('bsTextarea', 'backend::includes.components.form.textarea',
 	['name', 'value' => null, 'attributes' => [],'lang'=>$lang]) }}
 
+{{ Form::component('bsTextarea1', 'backend::includes.components.form.textarea1',
+	['name', 'value' => null, 'attributes' => [],'lang'=>$lang]) }}
+
+
+
 {{ Form::component('bsSelect', 'backend::includes.components.form.select',
 	['name', 'value' => null,'options'=>[], 'attributes' => [],'lang'=>$lang]) }}
 
