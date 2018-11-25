@@ -465,23 +465,33 @@ Form::macro('bsBtnDelete', function ($extra) {
 		//dd($obj->getKey());
 		//dd();
 	}
+	$routename=Request::route()->getName();
+	$routename_next=str_replace('.index', '.destroy', $routename);
 
-	$route=route(str_replace('.index', '.destroy', Request::route()->getName()), $params);
-
-	Theme::add('/theme/bc/sweetalert/dist/sweetalert.css');
+	$route=route($routename_next, $params);
+	//echo '<br/>'.$routename_next.'   '.$route;
 	Theme::add('/theme/bc/jquery/dist/jquery.min.js');
+	Theme::add('theme/bc/sweetalert2/dist/sweetalert2.min.js'); 
+	Theme::add('theme/bc/sweetalert2/dist/sweetalert2.min.css'); 
+	Theme::add('/theme/js/btnDeleteX2.js');
+	
+	/*-- sweet alert 1 --
+	Theme::add('/theme/bc/sweetalert/dist/sweetalert.css');
 	Theme::add('/theme/bc/sweetalert/dist/sweetalert.min.js');
 	Theme::add('/theme/js/btnDeleteX.js');
+	*/
 	$class='btn btn-small btn-danger';
 	if (isset($extra['class'])) {
 		$class.=' '.$extra['class'];
 	}
-	/*
-	if(isset($obj)){
-		return '<a class="'.$class.'" href="#" data-token="'. csrf_token() .'" data-id="'.$id.'"  data-href="'.$route.'" data-toggle="tooltip" title="Cancella"><i class="fa fa-trash-o fa-fw" aria-hidden="true"></i></a>';
-	}
-	*/
+	/*-- sweetalert 1
 	return '<a class="'.$class.'" href="#" data-token="'. csrf_token() .'" data-id="'.$id.'" data-href="'.$route.'" data-toggle="tooltip" title="Cancella"><i class="fa fa-trash-o fa-fw" aria-hidden="true"></i></a>';
+	*/
+	$html='<a class="'.$class.'" data-delete="" data-toggle="tooltip" title="Cancella" data-title="Sei Sicuro ?" data-message="di volere cancellare " data-button-text="cancella" data-id="'.$id.'" href="#" data-href="'.$route.'"><i class="fa fa-trash-o fa-fw" aria-hidden="true"></i></a>';
+	return $html;
+
+
+
 });
 
 
