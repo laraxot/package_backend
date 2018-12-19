@@ -470,7 +470,7 @@ Form::macro('bsBtnDelete', function ($extra) {
 
 	$route=route($routename_next, $params);
 	//echo '<br/>'.$routename_next.'   '.$route;
-	Theme::add('/theme/bc/jquery/dist/jquery.min.js');
+	//Theme::add('/theme/bc/jquery/dist/jquery.min.js');
 	Theme::add('theme/bc/sweetalert2/dist/sweetalert2.min.js'); 
 	Theme::add('theme/bc/sweetalert2/dist/sweetalert2.min.css'); 
 	Theme::add('/theme/js/btnDeleteX2.js');
