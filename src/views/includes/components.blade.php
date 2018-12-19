@@ -47,6 +47,7 @@
 
 {{ Form::component('bsSubmit', 'backend::includes.components.form.submit',
 	['name', 'value' => null, 'attributes' => [],'lang'=>$lang]) }}
+
 {{ Form::component('bs3Submit', 'backend::includes.components.form.submit3',
 	['name', 'value' => null, 'attributes' => [],'lang'=>$lang]) }}
 
@@ -190,9 +191,6 @@
 	
 {{ Form::component('bsFormSearch', 'backend::includes.components.form.form_search',
 	['name', 'value' => null,'options'=>[], 'attributes' => [],'lang'=>$lang]) }}
-{{--
-
---}}
 
 <?php
 
@@ -312,8 +310,8 @@ Form::macro('bsFormLatLngSearch', function () {
 	
 	return $html;
 });
-
 //*/
+
 /*
 Form::macro('bsFormLatLngSearch', function () {
 	$html='';
@@ -333,9 +331,7 @@ Form::macro('bsFormLatLngSearch', function () {
 	$html.='</div>';
 	return $html;
 });
-=======
-
-*/
+//*/
 
 
 
@@ -473,7 +469,7 @@ Form::macro('bsBtnDelete', function ($extra) {
 	//Theme::add('/theme/bc/jquery/dist/jquery.min.js');
 	Theme::add('theme/bc/sweetalert2/dist/sweetalert2.min.js'); 
 	Theme::add('theme/bc/sweetalert2/dist/sweetalert2.min.css'); 
-	Theme::add('/theme/js/btnDeleteX2.js');
+	Theme::add('extend::js/btnDeleteX2.js');
 	
 	/*-- sweet alert 1 --
 	Theme::add('/theme/bc/sweetalert/dist/sweetalert.css');
