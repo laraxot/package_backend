@@ -16,5 +16,8 @@ class LogMenu extends Facade
      *
      * @return string
      */
-    protected static function getFacadeAccessor() { return LogMenuContract::class; }
+    protected static function getFacadeAccessor()
+    {
+        return LogMenuContract::class;
+    }
 }

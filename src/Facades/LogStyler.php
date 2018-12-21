@@ -16,5 +16,8 @@ class LogStyler extends Facade
      *
      * @return string
      */
-    protected static function getFacadeAccessor() { return LogStylerContract::class; }
+    protected static function getFacadeAccessor()
+    {
+        return LogStylerContract::class;
+    }
 }

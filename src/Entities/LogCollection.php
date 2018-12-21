@@ -37,7 +37,9 @@ class LogCollection extends Collection
 
         parent::__construct($items);
 
-        if (empty($items)) $this->load();
+        if (empty($items)) {
+            $this->load();
+        }
     }
 
     /* -----------------------------------------------------------------
@@ -71,7 +73,7 @@ class LogCollection extends Collection
      */
     private function load()
     {
-        foreach($this->filesystem->dates(true) as $date => $path) {
+        foreach ($this->filesystem->dates(true) as $date => $path) {
             $this->put($date, Log::make($date, $path, $this->filesystem->read($date)));
         }
 
@@ -90,8 +92,9 @@ class LogCollection extends Collection
      */
     public function get($date, $default = null)
     {
-        if ( ! $this->has($date))
+        if (! $this->has($date)) {
             throw new LogNotFoundException("Log not found in this date [$date]");
+        }
 
         return parent::get($date, $default);
     }

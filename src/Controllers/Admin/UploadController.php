@@ -9,7 +9,8 @@ use Pion\Laravel\ChunkUpload\Handler\AbstractHandler;
 use Pion\Laravel\ChunkUpload\Handler\HandlerFactory;
 use Pion\Laravel\ChunkUpload\Receiver\FileReceiver;
 
-class UploadController extends Controller{
+class UploadController extends Controller
+{
     /**
      * Handles the file upload
      *
@@ -20,7 +21,8 @@ class UploadController extends Controller{
      * @throws UploadMissingFileException
      * @throws \Pion\Laravel\ChunkUpload\Exceptions\UploadFailedException
      */
-    public function upload(Request $request) {
+    public function upload(Request $request)
+    {
         // create the file receiver
         $receiver = new FileReceiver("file", $request, HandlerFactory::classFromRequest($request));
 

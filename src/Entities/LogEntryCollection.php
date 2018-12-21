@@ -65,7 +65,7 @@ class LogEntryCollection extends Collection
      */
     public function filterByLevel($level)
     {
-        return $this->filter(function(LogEntry $entry) use ($level) {
+        return $this->filter(function (LogEntry $entry) use ($level) {
             return $entry->isSameLevel($level);
         });
     }
@@ -98,7 +98,7 @@ class LogEntryCollection extends Collection
     {
         $tree = $this->stats();
 
-        array_walk($tree, function(&$count, $level) use ($trans) {
+        array_walk($tree, function (&$count, $level) use ($trans) {
             $count = [
                 'name'  => $trans ? log_levels()->get($level) : $level,
                 'count' => $count,

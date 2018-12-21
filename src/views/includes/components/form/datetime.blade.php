@@ -1,16 +1,16 @@
 <div class="form-group{{ $errors->has($name) ? ' has-error' : '' }}">
 	{{ Form::label($name,  trans('table.'.$name), ['class' => 'col-md-4 control-label']) }}
 	<div class="col-md-6">
-		<?php 
+		<?php
         $val=Form::getValueAttribute($name);
         //dd(typeof($val));
-        if(is_string($val)){
-        	$val1=\Carbon\Carbon::parse($val)->formatLocalized('%d/%m/%Y %I:%M %p'); //se uso getter e setter mutuators mi rispario sta roba
-        }elseif(is_object($val)){// instanceof Illuminate\Support\Carbon){
-        	$val1=$val->formatLocalized('%d/%m/%Y %I:%M %p');
-        }else{
-        	//dd(get_class($val));
-        	$val1=\Carbon\Carbon::now()->formatLocalized('%d/%m/%Y %I:%M %p');
+        if (is_string($val)) {
+            $val1=\Carbon\Carbon::parse($val)->formatLocalized('%d/%m/%Y %I:%M %p'); //se uso getter e setter mutuators mi rispario sta roba
+        } elseif (is_object($val)) {// instanceof Illuminate\Support\Carbon){
+            $val1=$val->formatLocalized('%d/%m/%Y %I:%M %p');
+        } else {
+            //dd(get_class($val));
+            $val1=\Carbon\Carbon::now()->formatLocalized('%d/%m/%Y %I:%M %p');
         }
         //echo '['.__LINE__.']['.__FILE__.']<hr/>'.$val1.'<hr/>';
         //echo '<br/>' . \Carbon\Carbon::createFromFormat('Y-m-d',$val)->formatLocalized('%d/%m/%Y');

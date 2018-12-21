@@ -16,5 +16,8 @@ class LogViewer extends Facade
      *
      * @return string
      */
-    protected static function getFacadeAccessor() { return LogViewerContract::class; }
+    protected static function getFacadeAccessor()
+    {
+        return LogViewerContract::class;
+    }
 }
