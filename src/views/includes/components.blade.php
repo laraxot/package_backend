@@ -1,13 +1,10 @@
 @php
  //$action = Route::currentRouteAction();
- //dd($action);
  //$tmp=Route::current()->action['uses'];
  $tmp= Route::currentRouteAction();
  $tmp=explode('\\',$tmp);
  $tmp=strtolower($tmp[1]);
- //dd($tmp);
  $lang=$tmp.'::fields';
- //dd($act);
 @endphp
 
 {{ Form::component('bsText', 'backend::includes.components.form.text',
@@ -343,7 +340,6 @@ Form::macro('bsOpen', function ($model, $from, $to='', $params = null) {
 
     //if(is_array($req_params)) $params=array_merge($req_params,$params);
 
-    //dd($params);
 
     if ($to=='') {
         $to=$from;
@@ -457,8 +453,6 @@ Form::macro('bsBtnDelete', function ($extra) {
         $id=$id->getRouteKey();
         $params['k']=$obj->getKeyName();
         $params['v']=$obj->getKey();
-        //dd($obj->getKey());
-        //dd();
     }
     $routename=Request::route()->getName();
     $routename_next=str_replace('.index', '.destroy', $routename);

@@ -13,7 +13,6 @@
 value:{{ $value }}
 @php
 //  $val=Form::getValueAttribute($name)->get();
-  //dd($val);
 @endphp
 {{-- 
 bower install --save bootstrap-tagsinput/bootstrap-tagsinput

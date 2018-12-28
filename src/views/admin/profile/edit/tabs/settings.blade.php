@@ -46,7 +46,6 @@
 			</div>
 		</div>
 		--}}
-		{{-- dd($row) --}}
 		{{ Form::bsText('last_name') }}
 		{{ Form::bsText('first_name') }}
 		{{ Form::bsText('email') }}

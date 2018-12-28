@@ -21,7 +21,6 @@ $name=$start_name.'__'.$end_name;
 		//echo '<h3>start_val_carbon ['.$start_val_carbon.']</h3>';
 		//echo '<h3>'.$val1.'</h3>';
 		if(strlen($val1)<10) $val1=null;
-		//dd($val1);
 		//echo '<br/>' . \Carbon\Carbon::createFromFormat('Y-m-d',$val)->formatLocalized('%d/%m/%Y');
 		//echo '<br/>'.$value;
 		//echo '<br/>'.\Carbon\Carbon::createFromFormat('Y-m-d H:i:s','2017-01-01 13:23:22');

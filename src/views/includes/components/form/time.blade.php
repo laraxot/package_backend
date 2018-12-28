@@ -1,11 +1,10 @@
 <div class="form-group{{ $errors->has($name) ? ' has-error' : '' }}">
 	{{ Form::label($name,   trans($lang.'.'.$name), ['class' => 'col-md-4 control-label']) }}
 	<div class="col-md-6">
-		<?php
+		@php
         //$val=Form::getValueAttribute($name);
-        //dd($val);
         
-        ?>
+        @endphp
 		<div class="datepicker-input input-group date">
 		{{ Form::text($name, $value, array_merge(['class' => 'form-control timepicker'], $attributes)) }}
 		<span class="input-group-addon">

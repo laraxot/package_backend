@@ -15,7 +15,6 @@ class CheckInstall
      */
     public function handle($request, Closure $next)
     {
-        //dd('ciao');
         if (env('INSTALLED')) {
             return $next($request);
         } else {
