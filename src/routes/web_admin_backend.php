@@ -1,28 +1,4 @@
 <?php
-/*
-use XRA\Extend\Library\XOT;
-
-$namespace=$this->getNamespace().'\Controllers'.'\Admin';
-
-$item0=[
-    'name'=>'backend'
-    ,'prefix'=>'backend'
-    ,'as'=>'backend.'
-    ,'namespace'=>null
-    ,'controller' =>  'BackendController'
-    ,'only'=>['index']
-];
-
-$areas_prgs=[
-    $item0
-];
-
-Route::group(['prefix' => 'admin','middleware' => ['web','auth'],'namespace'=>$namespace], function () use ($areas_prgs) {
-    XOT::dynamic_route($areas_prgs);
-});
-*/
-
-
 use XRA\Extend\Traits\RouteTrait;
 
 $namespace=$this->getNamespace();
