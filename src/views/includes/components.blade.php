@@ -22,6 +22,13 @@ foreach($files as $file){
 			['name', 'value' => null,'attributes' => [],'lang'=>$lang]);
 	}
 }
+//---- shortcut or custom --- 
+Form::component('bsSelect', 'backend::includes.components.form.select',
+	['name', 'value' => null,'options'=>[], 'attributes' => [],'lang'=>$lang]);
+Form::component('bsCheckbox', 'backend::includes.components.form.checkbox',
+	['name', 'value' => 1,'checked'=>false, 'attributes' => [],'lang'=>$lang]);
+Form::component('bsDateTimeRangeX', 'backend::includes.components.form.date_time_range_x',
+	['start_name','end_name', 'value' => null, 'attributes' => [],'lang'=>$lang]);
 
 Form::macro('bsYearNav', function ($paramz) {
 	$routename=\Route::currentRouteName();
