@@ -1,8 +1,10 @@
 <?php
+
+
+
 namespace XRA\Backend;
 
 use Illuminate\Support\ServiceProvider;
-
 use XRA\Extend\Traits\ServiceProviderTrait;
 
 class BackendServiceProvider extends ServiceProvider

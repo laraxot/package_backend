@@ -1,11 +1,14 @@
-<?php namespace Arcanedev\LogViewer\Commands;
+<?php
+
+
+
+namespace Arcanedev\LogViewer\Commands;
 
 use Arcanedev\LogViewer\Contracts\Utilities\LogChecker as LogCheckerContract;
 
 /**
- * Class     PublishCommand
+ * Class     PublishCommand.
  *
- * @package  Arcanedev\LogViewer\Commands
  * @author   ARCANEDEV <arcanedev.maroc@gmail.com>
  */
 class CheckCommand extends Command
@@ -20,7 +23,7 @@ class CheckCommand extends Command
      *
      * @var string
      */
-    protected $name      = 'log-viewer:check';
+    protected $name = 'log-viewer:check';
 
     /**
      * The console command description.
@@ -81,9 +84,9 @@ class CheckCommand extends Command
         $this->frame('Application requirements');
 
         $this->table([
-            'Status', 'Message'
+            'Status', 'Message',
         ], [
-            [$requirements['status'], $requirements['message']]
+            [$requirements['status'], $requirements['message']],
         ]);
     }
 

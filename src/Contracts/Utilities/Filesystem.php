@@ -1,11 +1,14 @@
-<?php namespace Arcanedev\LogViewer\Contracts\Utilities;
+<?php
+
+
+
+namespace Arcanedev\LogViewer\Contracts\Utilities;
 
 use Arcanedev\LogViewer\Contracts\Patternable;
 
 /**
- * Interface  Filesystem
+ * Interface  Filesystem.
  *
- * @package   Arcanedev\LogViewer\Contracts\Utilities
  * @author    ARCANEDEV <arcanedev.maroc@gmail.com>
  */
 interface Filesystem extends Patternable
@@ -15,8 +18,8 @@ interface Filesystem extends Patternable
      | -----------------------------------------------------------------
      */
 
-    const PATTERN_PREFIX    = 'laravel-';
-    const PATTERN_DATE      = '[0-9][0-9][0-9][0-9]-[0-9][0-9]-[0-9][0-9]';
+    const PATTERN_PREFIX = 'laravel-';
+    const PATTERN_DATE = '[0-9][0-9][0-9][0-9]-[0-9][0-9]-[0-9][0-9]';
     const PATTERN_EXTENSION = '.log';
 
     /* -----------------------------------------------------------------
@@ -34,7 +37,7 @@ interface Filesystem extends Patternable
     /**
      * Set the log storage path.
      *
-     * @param  string  $storagePath
+     * @param string $storagePath
      *
      * @return self
      */
@@ -43,7 +46,7 @@ interface Filesystem extends Patternable
     /**
      * Set the log date pattern.
      *
-     * @param  string  $datePattern
+     * @param string $datePattern
      *
      * @return self
      */
@@ -52,7 +55,7 @@ interface Filesystem extends Patternable
     /**
      * Set the log prefix pattern.
      *
-     * @param  string  $prefixPattern
+     * @param string $prefixPattern
      *
      * @return self
      */
@@ -61,7 +64,7 @@ interface Filesystem extends Patternable
     /**
      * Set the log extension.
      *
-     * @param  string  $extension
+     * @param string $extension
      *
      * @return self
      */
@@ -89,7 +92,7 @@ interface Filesystem extends Patternable
     /**
      * List the log files (Only dates).
      *
-     * @param  bool  $withPaths
+     * @param bool $withPaths
      *
      * @return array
      */
@@ -98,7 +101,7 @@ interface Filesystem extends Patternable
     /**
      * Read the log.
      *
-     * @param  string  $date
+     * @param string $date
      *
      * @return string
      *
@@ -109,7 +112,7 @@ interface Filesystem extends Patternable
     /**
      * Delete the log.
      *
-     * @param  string  $date
+     * @param string $date
      *
      * @return bool
      *
@@ -120,7 +123,7 @@ interface Filesystem extends Patternable
     /**
      * Get the log file path.
      *
-     * @param  string  $date
+     * @param string $date
      *
      * @return string
      */

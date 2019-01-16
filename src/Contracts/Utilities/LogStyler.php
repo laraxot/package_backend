@@ -1,9 +1,12 @@
-<?php namespace Arcanedev\LogViewer\Contracts\Utilities;
+<?php
+
+
+
+namespace Arcanedev\LogViewer\Contracts\Utilities;
 
 /**
- * Interface  LogStyler
+ * Interface  LogStyler.
  *
- * @package   Arcanedev\LogViewer\Contracts\Utilities
  * @author    ARCANEDEV <arcanedev.maroc@gmail.com>
  */
 interface LogStyler
@@ -16,8 +19,8 @@ interface LogStyler
     /**
      * Make level icon.
      *
-     * @param  string       $level
-     * @param  string|null  $default
+     * @param string      $level
+     * @param string|null $default
      *
      * @return string
      */
@@ -26,8 +29,8 @@ interface LogStyler
     /**
      * Get level color.
      *
-     * @param  string       $level
-     * @param  string|null  $default
+     * @param string      $level
+     * @param string|null $default
      *
      * @return string
      */
@@ -36,7 +39,7 @@ interface LogStyler
     /**
      * Get strings to highlight.
      *
-     * @param  array  $default
+     * @param array $default
      *
      * @return array
      */

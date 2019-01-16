@@ -1,21 +1,23 @@
 <?php
+
+
 use XRA\Extend\Traits\RouteTrait;
 
-$namespace=$this->getNamespace();
-$pack=class_basename($namespace);
-$middleware=['web', 'auth'];
-$prefix='admin';
+$namespace = $this->getNamespace();
+$pack = class_basename($namespace);
+$middleware = ['web', 'auth'];
+$prefix = 'admin';
 
-$areas_prgs=[
+$areas_prgs = [
     [
-        'name'=>'profile',
-    ]
+        'name' => 'profile',
+    ],
 ];
 Route::group(
     [
     'prefix' => $prefix,
-    'middleware' =>$middleware,
-    'namespace'=>$namespace.'\Controllers\Admin',
+    'middleware' => $middleware,
+    'namespace' => $namespace.'\Controllers\Admin',
     ],
     function () use ($areas_prgs) {
         Route::get('/', 'BackendController@dashboard');

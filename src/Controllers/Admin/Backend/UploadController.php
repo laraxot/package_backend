@@ -1,4 +1,6 @@
 <?php
+
+
 // to study
 //https://laraveldaily.com/laravel-ajax-file-upload-blueimp-jquery-library/
 //https://hafiznor.wordpress.com/2016/07/05/laravel-import-read-excel-file-use-chunk-to-avoid-memory-fatal-error/
@@ -16,39 +18,34 @@
 // https://www.sitepoint.com/performant-reading-big-files-php/
 // https://www.jasny.net/bootstrap/  // missing components  ??
 
-
-
 namespace XRA\Backend\Controllers\Admin\Backend;
 
-use Storage;
+use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Http\UploadedFile;
 use Pion\Laravel\ChunkUpload\Exceptions\UploadMissingFileException;
 use Pion\Laravel\ChunkUpload\Handler\AbstractHandler;
 use Pion\Laravel\ChunkUpload\Handler\HandlerFactory;
 use Pion\Laravel\ChunkUpload\Receiver\FileReceiver;
-
-
-use App\Http\Controllers\Controller;
-
-use XRA\Extend\Traits\CrudContainerItemTrait as CrudTrait;
+use Storage;
 
 class UploadController extends Controller
 {
-
     //*
     public function store(Request $request)
     {
         return $this->upload($request);
     }
+
     //*/
     /*
     public function store(FileReceiver $request) {
         return $this->uploadFile($request);
     }
     //*/
+
     /**
-     * Handles the file upload
+     * Handles the file upload.
      *
      * @param Request $request
      *
@@ -60,7 +57,7 @@ class UploadController extends Controller
     public function uploadFile(FileReceiver $receiver)
     {
         // check if the upload is success, throw exception or return response you need
-        if ($receiver->isUploaded() === false) {
+        if (false === $receiver->isUploaded()) {
             throw new UploadMissingFileException();
         }
         // receive the file
@@ -75,19 +72,19 @@ class UploadController extends Controller
         // we are in chunk mode, lets send the current progress
         /** @var AbstractHandler $handler */
         $handler = $save->handler();
+
         return response()->json([
-            "done" => $handler->getPercentageDone()
+            'done' => $handler->getPercentageDone(),
         ]);
     }
-
 
     public function upload(Request $request)
     {
         // create the file receiver
-        $receiver = new FileReceiver("file", $request, HandlerFactory::classFromRequest($request));
+        $receiver = new FileReceiver('file', $request, HandlerFactory::classFromRequest($request));
 
         // check if the upload is success, throw exception or return response you need
-        if ($receiver->isUploaded() === false) {
+        if (false === $receiver->isUploaded()) {
             throw new UploadMissingFileException();
         }
 
@@ -106,13 +103,13 @@ class UploadController extends Controller
         $handler = $save->handler();
 
         return response()->json([
-            "done" => $handler->getPercentageDone(),
-            'status' => true
+            'done' => $handler->getPercentageDone(),
+            'status' => true,
         ]);
     }
 
     /**
-     * Saves the file to S3 server
+     * Saves the file to S3 server.
      *
      * @param UploadedFile $file
      *
@@ -128,20 +125,20 @@ class UploadController extends Controller
 
         // for older laravel
         // $disk->put($fileName, file_get_contents($file), 'public');
-        $mime = str_replace('/', '-', $file->getMimeType());
+        $mime = \str_replace('/', '-', $file->getMimeType());
 
         // We need to delete the file when uploaded to s3
-        unlink($file->getPathname());
+        \unlink($file->getPathname());
 
         return response()->json([
             'path' => $disk->url($fileName),
             'name' => $fileName,
-            'mime_type' =>$mime
+            'mime_type' => $mime,
         ]);
     }
 
     /**
-     * Saves the file
+     * Saves the file.
      *
      * @param UploadedFile $file
      *
@@ -151,9 +148,9 @@ class UploadController extends Controller
     {
         $fileName = $this->createFilename($file);
         // Group files by mime type
-        $mime = str_replace('/', '-', $file->getMimeType());
+        $mime = \str_replace('/', '-', $file->getMimeType());
         // Group files by the date (week
-        $dateFolder = date("Y-m-W");
+        $dateFolder = \date('Y-m-W');
         $extension = $file->getClientOriginalExtension();
         // Build the file path
         //$filePath = "upload/{$mime}/{$dateFolder}/";
@@ -168,23 +165,25 @@ class UploadController extends Controller
         return response()->json([
             'path' => $filePath,
             'name' => $fileName,
-            'mime_type' => $mime
+            'mime_type' => $mime,
         ]);
     }
 
     /**
-     * Create unique filename for uploaded file
+     * Create unique filename for uploaded file.
+     *
      * @param UploadedFile $file
+     *
      * @return string
      */
     protected function createFilename(UploadedFile $file)
     {
         $extension = $file->getClientOriginalExtension();
-        $filename = str_replace(".".$extension, "", $file->getClientOriginalName()); // Filename without extension
+        $filename = \str_replace('.'.$extension, '', $file->getClientOriginalName()); // Filename without extension
 
         // Add timestamp hash to name of the file
         //$filename .= "_" . md5(time()) . "." . $extension;
-        $filename .= "." . $extension;
+        $filename .= '.'.$extension;
 
         return $filename;
     }

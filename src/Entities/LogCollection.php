@@ -1,4 +1,8 @@
-<?php namespace Arcanedev\LogViewer\Entities;
+<?php
+
+
+
+namespace Arcanedev\LogViewer\Entities;
 
 use Arcanedev\LogViewer\Contracts\Utilities\Filesystem as FilesystemContract;
 use Arcanedev\LogViewer\Exceptions\LogNotFoundException;
@@ -6,9 +10,8 @@ use Illuminate\Pagination\LengthAwarePaginator;
 use Illuminate\Support\Collection;
 
 /**
- * Class     LogCollection
+ * Class     LogCollection.
  *
- * @package  Arcanedev\LogViewer\Entities
  * @author   ARCANEDEV <arcanedev.maroc@gmail.com>
  */
 class LogCollection extends Collection
@@ -29,7 +32,7 @@ class LogCollection extends Collection
     /**
      * LogCollection constructor.
      *
-     * @param  array  $items
+     * @param array $items
      */
     public function __construct($items = [])
     {
@@ -50,7 +53,7 @@ class LogCollection extends Collection
     /**
      * Set the filesystem instance.
      *
-     * @param  \Arcanedev\LogViewer\Contracts\Utilities\Filesystem  $filesystem
+     * @param \Arcanedev\LogViewer\Contracts\Utilities\Filesystem $filesystem
      *
      * @return \Arcanedev\LogViewer\Entities\LogCollection
      */
@@ -83,8 +86,8 @@ class LogCollection extends Collection
     /**
      * Get a log.
      *
-     * @param  string      $date
-     * @param  mixed|null  $default
+     * @param string     $date
+     * @param mixed|null $default
      *
      * @return \Arcanedev\LogViewer\Entities\Log
      *
@@ -92,7 +95,7 @@ class LogCollection extends Collection
      */
     public function get($date, $default = null)
     {
-        if (! $this->has($date)) {
+        if (!$this->has($date)) {
             throw new LogNotFoundException("Log not found in this date [$date]");
         }
 
@@ -102,7 +105,7 @@ class LogCollection extends Collection
     /**
      * Paginate logs.
      *
-     * @param  int  $perPage
+     * @param int $perPage
      *
      * @return \Illuminate\Pagination\LengthAwarePaginator
      */
@@ -116,7 +119,7 @@ class LogCollection extends Collection
             $this->count(),
             $perPage,
             $page,
-            compact('path')
+            \compact('path')
         );
     }
 
@@ -125,7 +128,7 @@ class LogCollection extends Collection
      *
      * @see get()
      *
-     * @param  string  $date
+     * @param string $date
      *
      * @return \Arcanedev\LogViewer\Entities\Log
      */
@@ -134,12 +137,11 @@ class LogCollection extends Collection
         return $this->get($date);
     }
 
-
     /**
      * Get log entries.
      *
-     * @param  string  $date
-     * @param  string  $level
+     * @param string $date
+     * @param string $level
      *
      * @return \Arcanedev\LogViewer\Entities\LogEntryCollection
      */
@@ -158,7 +160,7 @@ class LogCollection extends Collection
         $stats = [];
 
         foreach ($this->items as $date => $log) {
-            /** @var \Arcanedev\LogViewer\Entities\Log $log */
+            /* @var \Arcanedev\LogViewer\Entities\Log $log */
             $stats[$date] = $log->stats();
         }
 
@@ -178,7 +180,7 @@ class LogCollection extends Collection
     /**
      * Get entries total.
      *
-     * @param  string  $level
+     * @param string $level
      *
      * @return int
      */
@@ -192,7 +194,7 @@ class LogCollection extends Collection
     /**
      * Get logs tree.
      *
-     * @param  bool  $trans
+     * @param bool $trans
      *
      * @return array
      */
@@ -201,7 +203,7 @@ class LogCollection extends Collection
         $tree = [];
 
         foreach ($this->items as $date => $log) {
-            /** @var \Arcanedev\LogViewer\Entities\Log $log */
+            /* @var \Arcanedev\LogViewer\Entities\Log $log */
             $tree[$date] = $log->tree($trans);
         }
 
@@ -211,7 +213,7 @@ class LogCollection extends Collection
     /**
      * Get logs menu.
      *
-     * @param  bool  $trans
+     * @param bool $trans
      *
      * @return array
      */
@@ -220,7 +222,7 @@ class LogCollection extends Collection
         $menu = [];
 
         foreach ($this->items as $date => $log) {
-            /** @var \Arcanedev\LogViewer\Entities\Log $log */
+            /* @var \Arcanedev\LogViewer\Entities\Log $log */
             $menu[$date] = $log->menu($trans);
         }
 

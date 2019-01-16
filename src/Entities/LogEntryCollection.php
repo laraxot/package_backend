@@ -1,13 +1,16 @@
-<?php namespace Arcanedev\LogViewer\Entities;
+<?php
+
+
+
+namespace Arcanedev\LogViewer\Entities;
 
 use Arcanedev\LogViewer\Helpers\LogParser;
 use Illuminate\Pagination\LengthAwarePaginator;
 use Illuminate\Support\Collection;
 
 /**
- * Class     LogEntryCollection
+ * Class     LogEntryCollection.
  *
- * @package  Arcanedev\LogViewer\Entities
  * @author   ARCANEDEV <arcanedev.maroc@gmail.com>
  */
 class LogEntryCollection extends Collection
@@ -20,14 +23,14 @@ class LogEntryCollection extends Collection
     /**
      * Load raw log entries.
      *
-     * @param  string  $raw
+     * @param string $raw
      *
      * @return self
      */
     public function load($raw)
     {
         foreach (LogParser::parse($raw) as $entry) {
-            list($level, $header, $stack) = array_values($entry);
+            list($level, $header, $stack) = \array_values($entry);
 
             $this->push(new LogEntry($level, $header, $stack));
         }
@@ -38,7 +41,7 @@ class LogEntryCollection extends Collection
     /**
      * Paginate log entries.
      *
-     * @param  int  $perPage
+     * @param int $perPage
      *
      * @return \Illuminate\Pagination\LengthAwarePaginator
      */
@@ -52,14 +55,14 @@ class LogEntryCollection extends Collection
             $this->count(),
             $perPage,
             $page,
-            compact('path')
+            \compact('path')
         );
     }
 
     /**
      * Get filtered log entries by level.
      *
-     * @param  string  $level
+     * @param string $level
      *
      * @return self
      */
@@ -80,7 +83,7 @@ class LogEntryCollection extends Collection
         $counters = $this->initStats();
 
         foreach ($this->groupBy('level') as $level => $entries) {
-            $counters[$level] = $count = count($entries);
+            $counters[$level] = $count = \count($entries);
             $counters['all'] += $count;
         }
 
@@ -90,7 +93,7 @@ class LogEntryCollection extends Collection
     /**
      * Get the log entries navigation tree.
      *
-     * @param  bool|false  $trans
+     * @param bool|false $trans
      *
      * @return array
      */
@@ -98,9 +101,9 @@ class LogEntryCollection extends Collection
     {
         $tree = $this->stats();
 
-        array_walk($tree, function (&$count, $level) use ($trans) {
+        \array_walk($tree, function (&$count, $level) use ($trans) {
             $count = [
-                'name'  => $trans ? log_levels()->get($level) : $level,
+                'name' => $trans ? log_levels()->get($level) : $level,
                 'count' => $count,
             ];
         });
@@ -120,13 +123,13 @@ class LogEntryCollection extends Collection
      */
     private function initStats()
     {
-        $levels = array_merge_recursive(
+        $levels = \array_merge_recursive(
             ['all'],
-            array_keys(log_viewer()->levels(true))
+            \array_keys(log_viewer()->levels(true))
         );
 
-        return array_map(function () {
+        return \array_map(function () {
             return 0;
-        }, array_flip($levels));
+        }, \array_flip($levels));
     }
 }

@@ -2,8 +2,8 @@
 	{{ Form::label($name,  trans($lang.'.'.$name), ['class' => 'col-md-4 control-label']) }}
 	<div class="col-md-6">
 		<?php
-        $val=Form::getValueAttribute($name);
-        $val1=\Carbon\Carbon::parse($val)->formatLocalized('%d/%m/%Y');
+        $val = Form::getValueAttribute($name);
+        $val1 = \Carbon\Carbon::parse($val)->formatLocalized('%d/%m/%Y');
         //echo '<br/>' . \Carbon\Carbon::createFromFormat('Y-m-d',$val)->formatLocalized('%d/%m/%Y');
         //echo '<br/>'.$value;
         //echo '<br/>'.\Carbon\Carbon::createFromFormat('Y-m-d H:i:s','2017-01-01 13:23:22');

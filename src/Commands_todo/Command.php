@@ -1,12 +1,15 @@
-<?php namespace Arcanedev\LogViewer\Commands;
+<?php
+
+
+
+namespace Arcanedev\LogViewer\Commands;
 
 use Arcanedev\LogViewer\Contracts\LogViewer as LogViewerContract;
 use Arcanedev\Support\Bases\Command as BaseCommand;
 
 /**
- * Class     Command
+ * Class     Command.
  *
- * @package  Arcanedev\LogViewer\Bases
  * @author   ARCANEDEV <arcanedev.maroc@gmail.com>
  */
 abstract class Command extends BaseCommand
@@ -27,7 +30,7 @@ abstract class Command extends BaseCommand
     /**
      * Create the command instance.
      *
-     * @param  \Arcanedev\LogViewer\Contracts\LogViewer  $logViewer
+     * @param \Arcanedev\LogViewer\Contracts\LogViewer $logViewer
      */
     public function __construct(LogViewerContract $logViewer)
     {
@@ -56,7 +59,7 @@ abstract class Command extends BaseCommand
         $this->line('');
 
         // Copyright
-        $this->comment('Version '.$this->logViewer->version().' - Created by ARCANEDEV'.chr(169));
+        $this->comment('Version '.$this->logViewer->version().' - Created by ARCANEDEV'.\chr(169));
         $this->line('');
     }
 }

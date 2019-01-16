@@ -1,13 +1,12 @@
 <?php
 
+
+
 namespace XRA\Backend\Models;
 
 use Illuminate\Database\Eloquent\Model;
-use XRA\Extend\Traits\Updater;
-use Carbon\Carbon;
 
 //------ ext models---
-use Xot\Sigma\Models\Anag;
 
 class Backend extends Model
 {
@@ -17,7 +16,7 @@ class Backend extends Model
      */
 
     /**
-     * The log viewer instance
+     * The log viewer instance.
      *
      * @var \Arcanedev\LogViewer\Contracts\LogViewer
      */
@@ -28,11 +27,11 @@ class Backend extends Model
 
     /** @var string */
     protected $showRoute = 'log-viewer::logs.show';
-    
 
     public function getStatsAttribute($value)
     {
-        $stats=$this->logViewer->statsTable();
+        $stats = $this->logViewer->statsTable();
+
         return $stats;
     }
 
@@ -46,8 +45,9 @@ class Backend extends Model
 
     public function getPercentsAttribute($value)
     {
-        $stats=$this->stats;
-        $percents  = $this->calcPercentages($stats->footer(), $stats->header());
+        $stats = $this->stats;
+        $percents = $this->calcPercentages($stats->footer(), $stats->header());
+
         return $percents;
     }
 }

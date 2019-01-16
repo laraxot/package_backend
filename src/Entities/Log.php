@@ -1,4 +1,8 @@
-<?php namespace Arcanedev\LogViewer\Entities;
+<?php
+
+
+
+namespace Arcanedev\LogViewer\Entities;
 
 use Carbon\Carbon;
 use Illuminate\Contracts\Support\Arrayable;
@@ -7,9 +11,8 @@ use JsonSerializable;
 use SplFileInfo;
 
 /**
- * Class     Log
+ * Class     Log.
  *
- * @package  Arcanedev\LogViewer\Entities
  * @author   ARCANEDEV <arcanedev.maroc@gmail.com>
  *
  * @todo     Add a stats method
@@ -41,16 +44,16 @@ class Log implements Arrayable, Jsonable, JsonSerializable
     /**
      * Log constructor.
      *
-     * @param  string  $date
-     * @param  string  $path
-     * @param  string  $raw
+     * @param string $date
+     * @param string $path
+     * @param string $raw
      */
     public function __construct($date, $path, $raw)
     {
-        $this->date    = $date;
-        $this->path    = $path;
-        $this->file    = new SplFileInfo($path);
-        $this->entries = (new LogEntryCollection)->load($raw);
+        $this->date = $date;
+        $this->path = $path;
+        $this->file = new SplFileInfo($path);
+        $this->entries = (new LogEntryCollection())->load($raw);
     }
 
     /* -----------------------------------------------------------------
@@ -116,9 +119,9 @@ class Log implements Arrayable, Jsonable, JsonSerializable
     /**
      * Make a log object.
      *
-     * @param  string  $date
-     * @param  string  $path
-     * @param  string  $raw
+     * @param string $date
+     * @param string $path
+     * @param string $raw
      *
      * @return self
      */
@@ -130,13 +133,13 @@ class Log implements Arrayable, Jsonable, JsonSerializable
     /**
      * Get log entries.
      *
-     * @param  string  $level
+     * @param string $level
      *
      * @return \Arcanedev\LogViewer\Entities\LogEntryCollection
      */
     public function entries($level = 'all')
     {
-        return $level === 'all'
+        return 'all' === $level
             ? $this->entries
             : $this->getByLevel($level);
     }
@@ -144,7 +147,7 @@ class Log implements Arrayable, Jsonable, JsonSerializable
     /**
      * Get filtered log entries by level.
      *
-     * @param  string  $level
+     * @param string $level
      *
      * @return \Arcanedev\LogViewer\Entities\LogEntryCollection
      */
@@ -166,7 +169,7 @@ class Log implements Arrayable, Jsonable, JsonSerializable
     /**
      * Get the log navigation tree.
      *
-     * @param  bool  $trans
+     * @param bool $trans
      *
      * @return array
      */
@@ -178,7 +181,7 @@ class Log implements Arrayable, Jsonable, JsonSerializable
     /**
      * Get log entries menu.
      *
-     * @param  bool  $trans
+     * @param bool $trans
      *
      * @return array
      */
@@ -200,22 +203,22 @@ class Log implements Arrayable, Jsonable, JsonSerializable
     public function toArray()
     {
         return [
-            'date'    => $this->date,
-            'path'    => $this->path,
-            'entries' => $this->entries->toArray()
+            'date' => $this->date,
+            'path' => $this->path,
+            'entries' => $this->entries->toArray(),
         ];
     }
 
     /**
      * Convert the object to its JSON representation.
      *
-     * @param  int  $options
+     * @param int $options
      *
      * @return string
      */
     public function toJson($options = 0)
     {
-        return json_encode($this->toArray(), $options);
+        return \json_encode($this->toArray(), $options);
     }
 
     /**
@@ -236,8 +239,8 @@ class Log implements Arrayable, Jsonable, JsonSerializable
     /**
      * Format the file size.
      *
-     * @param  int  $bytes
-     * @param  int  $precision
+     * @param int $bytes
+     * @param int $precision
      *
      * @return string
      */
@@ -245,10 +248,10 @@ class Log implements Arrayable, Jsonable, JsonSerializable
     {
         $units = ['B', 'KB', 'MB', 'GB', 'TB'];
 
-        $bytes = max($bytes, 0);
-        $pow   = floor(($bytes ? log($bytes) : 0) / log(1024));
-        $pow   = min($pow, count($units) - 1);
+        $bytes = \max($bytes, 0);
+        $pow = \floor(($bytes ? \log($bytes) : 0) / \log(1024));
+        $pow = \min($pow, \count($units) - 1);
 
-        return round($bytes / pow(1024, $pow), $precision).' '.$units[$pow];
+        return \round($bytes / \pow(1024, $pow), $precision).' '.$units[$pow];
     }
 }

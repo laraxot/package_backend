@@ -1,4 +1,8 @@
-<?php namespace Arcanedev\LogViewer\Entities;
+<?php
+
+
+
+namespace Arcanedev\LogViewer\Entities;
 
 use Carbon\Carbon;
 use Illuminate\Contracts\Support\Arrayable;
@@ -6,9 +10,8 @@ use Illuminate\Contracts\Support\Jsonable;
 use JsonSerializable;
 
 /**
- * Class     LogEntry
+ * Class     LogEntry.
  *
- * @package  Arcanedev\LogViewer\Entities
  * @author   ARCANEDEV <arcanedev.maroc@gmail.com>
  */
 class LogEntry implements Arrayable, Jsonable, JsonSerializable
@@ -41,9 +44,9 @@ class LogEntry implements Arrayable, Jsonable, JsonSerializable
     /**
      * Construct the log entry instance.
      *
-     * @param  string  $level
-     * @param  string  $header
-     * @param  string  $stack
+     * @param string $level
+     * @param string $header
+     * @param string $stack
      */
     public function __construct($level, $header, $stack)
     {
@@ -60,7 +63,7 @@ class LogEntry implements Arrayable, Jsonable, JsonSerializable
     /**
      * Set the entry level.
      *
-     * @param  string  $level
+     * @param string $level
      *
      * @return self
      */
@@ -74,7 +77,7 @@ class LogEntry implements Arrayable, Jsonable, JsonSerializable
     /**
      * Set the entry header.
      *
-     * @param  string  $header
+     * @param string $header
      *
      * @return self
      */
@@ -84,9 +87,9 @@ class LogEntry implements Arrayable, Jsonable, JsonSerializable
 
         $header = $this->cleanHeader($header);
 
-        if (preg_match('/^[a-z]+.[A-Z]+:/', $header, $out)) {
+        if (\preg_match('/^[a-z]+.[A-Z]+:/', $header, $out)) {
             $this->setEnv($out[0]);
-            $header = trim(str_replace($out[0], '', $header));
+            $header = \trim(\str_replace($out[0], '', $header));
         }
 
         $this->header = $header;
@@ -97,13 +100,13 @@ class LogEntry implements Arrayable, Jsonable, JsonSerializable
     /**
      * Set entry environment.
      *
-     * @param  string  $env
+     * @param string $env
      *
      * @return self
      */
     private function setEnv($env)
     {
-        $this->env = head(explode('.', $env));
+        $this->env = head(\explode('.', $env));
 
         return $this;
     }
@@ -111,7 +114,7 @@ class LogEntry implements Arrayable, Jsonable, JsonSerializable
     /**
      * Set the entry date time.
      *
-     * @param  string  $datetime
+     * @param string $datetime
      *
      * @return \Arcanedev\LogViewer\Entities\LogEntry
      */
@@ -125,7 +128,7 @@ class LogEntry implements Arrayable, Jsonable, JsonSerializable
     /**
      * Set the entry stack.
      *
-     * @param  string  $stack
+     * @param string $stack
      *
      * @return self
      */
@@ -173,7 +176,7 @@ class LogEntry implements Arrayable, Jsonable, JsonSerializable
      */
     public function stack()
     {
-        return trim(htmlentities($this->stack));
+        return \trim(\htmlentities($this->stack));
     }
 
     /* -----------------------------------------------------------------
@@ -184,7 +187,7 @@ class LogEntry implements Arrayable, Jsonable, JsonSerializable
     /**
      * Check if same log level.
      *
-     * @param  string  $level
+     * @param string $level
      *
      * @return bool
      */
@@ -206,23 +209,23 @@ class LogEntry implements Arrayable, Jsonable, JsonSerializable
     public function toArray()
     {
         return [
-            'level'    => $this->level,
+            'level' => $this->level,
             'datetime' => $this->datetime->format('Y-m-d H:i:s'),
-            'header'   => $this->header,
-            'stack'    => $this->stack
+            'header' => $this->header,
+            'stack' => $this->stack,
         ];
     }
 
     /**
      * Convert the log entry to its JSON representation.
      *
-     * @param  int  $options
+     * @param int $options
      *
      * @return string
      */
     public function toJson($options = 0)
     {
-        return json_encode($this->toArray(), $options);
+        return \json_encode($this->toArray(), $options);
     }
 
     /**
@@ -247,7 +250,7 @@ class LogEntry implements Arrayable, Jsonable, JsonSerializable
      */
     public function hasStack()
     {
-        return $this->stack !== "\n";
+        return "\n" !== $this->stack;
     }
 
     /* -----------------------------------------------------------------
@@ -258,24 +261,24 @@ class LogEntry implements Arrayable, Jsonable, JsonSerializable
     /**
      * Clean the entry header.
      *
-     * @param  string  $header
+     * @param string $header
      *
      * @return string
      */
     private function cleanHeader($header)
     {
-        return preg_replace('/\['.REGEX_DATETIME_PATTERN.'\][ ]/', '', $header);
+        return \preg_replace('/\['.REGEX_DATETIME_PATTERN.'\][ ]/', '', $header);
     }
 
     /**
      * Extract datetime from the header.
      *
-     * @param  string  $header
+     * @param string $header
      *
      * @return string
      */
     private function extractDatetime($header)
     {
-        return preg_replace('/^\[('.REGEX_DATETIME_PATTERN.')\].*/', '$1', $header);
+        return \preg_replace('/^\[('.REGEX_DATETIME_PATTERN.')\].*/', '$1', $header);
     }
 }

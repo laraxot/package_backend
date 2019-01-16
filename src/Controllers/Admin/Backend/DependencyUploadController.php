@@ -1,30 +1,28 @@
 <?php
 
+
+
 namespace XRA\Backend\Controllers\Admin\Backend;
 
-use Illuminate\Http\Request;
-use Illuminate\Http\UploadedFile;
 use Pion\Laravel\ChunkUpload\Exceptions\UploadMissingFileException;
 use Pion\Laravel\ChunkUpload\Handler\AbstractHandler;
-use Pion\Laravel\ChunkUpload\Handler\HandlerFactory;
 use Pion\Laravel\ChunkUpload\Receiver\FileReceiver;
 
 class DependencyUploadController extends UploadController
 {
     /**
-     * Handles the file upload
+     * Handles the file upload.
      *
      * @param FileReceiver $receiver
      *
      * @return \Illuminate\Http\JsonResponse
      *
      * @throws UploadMissingFileException
-     *
      */
     public function uploadFile(FileReceiver $receiver)
     {
         // check if the upload is success, throw exception or return response you need
-        if ($receiver->isUploaded() === false) {
+        if (false === $receiver->isUploaded()) {
             throw new UploadMissingFileException();
         }
         // receive the file
@@ -39,8 +37,9 @@ class DependencyUploadController extends UploadController
         // we are in chunk mode, lets send the current progress
         /** @var AbstractHandler $handler */
         $handler = $save->handler();
+
         return response()->json([
-            "done" => $handler->getPercentageDone()
+            'done' => $handler->getPercentageDone(),
         ]);
     }
 }

@@ -1,11 +1,14 @@
-<?php namespace Arcanedev\LogViewer\Contracts\Utilities;
+<?php
+
+
+
+namespace Arcanedev\LogViewer\Contracts\Utilities;
 
 use Arcanedev\LogViewer\Contracts\Patternable;
 
 /**
- * Interface  Factory
+ * Interface  Factory.
  *
- * @package   Arcanedev\LogViewer\Contracts\Utilities
  * @author    ARCANEDEV <arcanedev.maroc@gmail.com>
  */
 interface Factory extends Patternable
@@ -25,7 +28,7 @@ interface Factory extends Patternable
     /**
      * Set the filesystem instance.
      *
-     * @param  \Arcanedev\LogViewer\Contracts\Utilities\Filesystem  $filesystem
+     * @param \Arcanedev\LogViewer\Contracts\Utilities\Filesystem $filesystem
      *
      * @return self
      */
@@ -34,14 +37,14 @@ interface Factory extends Patternable
     /**
      * Get the log levels instance.
      *
-     * @return  \Arcanedev\LogViewer\Contracts\Utilities\LogLevels  $levels
+     * @return \Arcanedev\LogViewer\Contracts\Utilities\LogLevels $levels
      */
     public function getLevels();
 
     /**
      * Set the log levels instance.
      *
-     * @param  \Arcanedev\LogViewer\Contracts\Utilities\LogLevels  $levels
+     * @param \Arcanedev\LogViewer\Contracts\Utilities\LogLevels $levels
      *
      * @return self
      */
@@ -50,7 +53,7 @@ interface Factory extends Patternable
     /**
      * Set the log storage path.
      *
-     * @param  string  $storagePath
+     * @param string $storagePath
      *
      * @return self
      */
@@ -80,7 +83,7 @@ interface Factory extends Patternable
     /**
      * Paginate all logs.
      *
-     * @param  int  $perPage
+     * @param int $perPage
      *
      * @return \Illuminate\Pagination\LengthAwarePaginator
      */
@@ -89,7 +92,7 @@ interface Factory extends Patternable
     /**
      * Get a log by date.
      *
-     * @param  string  $date
+     * @param string $date
      *
      * @return \Arcanedev\LogViewer\Entities\Log
      */
@@ -98,7 +101,7 @@ interface Factory extends Patternable
     /**
      * Get a log by date (alias).
      *
-     * @param  string  $date
+     * @param string $date
      *
      * @return \Arcanedev\LogViewer\Entities\Log
      */
@@ -107,8 +110,8 @@ interface Factory extends Patternable
     /**
      * Get log entries.
      *
-     * @param  string  $date
-     * @param  string  $level
+     * @param string $date
+     * @param string $level
      *
      * @return \Arcanedev\LogViewer\Entities\LogEntryCollection
      */
@@ -131,7 +134,7 @@ interface Factory extends Patternable
     /**
      * Get total log entries.
      *
-     * @param  string  $level
+     * @param string $level
      *
      * @return int
      */
@@ -140,7 +143,7 @@ interface Factory extends Patternable
     /**
      * Get tree menu.
      *
-     * @param  bool  $trans
+     * @param bool $trans
      *
      * @return array
      */
@@ -149,7 +152,7 @@ interface Factory extends Patternable
     /**
      * Get tree menu.
      *
-     * @param  bool  $trans
+     * @param bool $trans
      *
      * @return array
      */
@@ -165,7 +168,7 @@ interface Factory extends Patternable
     /**
      * Get logs statistics table.
      *
-     * @param  string|null  $locale
+     * @param string|null $locale
      *
      * @return \Arcanedev\LogViewer\Tables\StatsTable
      */

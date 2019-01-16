@@ -1,12 +1,15 @@
-<?php namespace Arcanedev\LogViewer\Facades;
+<?php
+
+
+
+namespace Arcanedev\LogViewer\Facades;
 
 use Arcanedev\LogViewer\Contracts\Utilities\LogStyler as LogStylerContract;
 use Illuminate\Support\Facades\Facade;
 
 /**
- * Class     LogStyler
+ * Class     LogStyler.
  *
- * @package  Arcanedev\LogViewer\Facades
  * @author   ARCANEDEV <arcanedev.maroc@gmail.com>
  */
 class LogStyler extends Facade
