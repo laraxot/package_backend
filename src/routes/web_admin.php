@@ -5,7 +5,7 @@ use XRA\Extend\Traits\RouteTrait;
 
 $namespace = $this->getNamespace();
 $pack = class_basename($namespace);
-$middleware = ['web', 'auth'];
+$middleware = ['web', 'auth'/*,'verified'*/];
 $prefix = 'admin';
 
 $areas_prgs = [
