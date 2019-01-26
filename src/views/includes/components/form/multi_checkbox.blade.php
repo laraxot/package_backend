@@ -1,11 +1,10 @@
 @php
-	//Theme::addScript("/theme/bc/jquery/dist/jquery.min.js");
- 	//Theme::addScript("/theme/bc/bootstrap/dist/js/bootstrap.min.js");
-	Theme::addScript('/theme/bc/multiselect/dist/js/multiselect.js');
+	Theme::addScript('/theme/bc/multiselect/dist/js/multiselect.js'); //https://github.com/crlcu/multiselect
 	$val=Form::getValueAttribute($name);
 	$all=Form::getValueAttribute('all_'.$name);
+    //$model=Form::getModel();
 	//$my=collect($value->toArray());
-	//ddd($val);
+	//ddd($all);
 	if($val==null) $val=[];
 	//ddd($all);
 @endphp
