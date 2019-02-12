@@ -8,6 +8,8 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 //--- services
 use XRA\Extend\Services\ThemeService;
+//--- traits 
+use XRA\Extend\Traits\ArtisanTrait;
 
 class BackendController extends Controller
 {
