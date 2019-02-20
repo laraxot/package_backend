@@ -2,10 +2,15 @@
 	Theme::addScript('/theme/bc/multiselect/dist/js/multiselect.js'); //https://github.com/crlcu/multiselect
 	$val=Form::getValueAttribute($name);
 	$all=Form::getValueAttribute('all_'.$name);
+    //ddd('all_'.$name);
+    //ddd($all);
     //$model=Form::getModel();
 	//$my=collect($value->toArray());
 	//ddd($all);
 	if($val==null) $val=[];
+    if(!is_array($val)){
+        //ddd($val);
+    }
 	//ddd($all);
 @endphp
 
