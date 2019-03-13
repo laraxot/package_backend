@@ -1,9 +1,0 @@
-<?php
-$namespace=$this->getNamespace();
-$namespace.='\Controllers\Admin';
-
-$middleware=['web', 'checkinstall','permuser', 'auth'];
-Route::group(['prefix' => 'admin', 'middleware' => $middleware, 'namespace' => $namespace], function () {
-    Route::get('/', 'BackendController@index');
-    Route::get('_menufull/delete', 'MenufullController@delete')->name('menufull.delete');
-});
