@@ -51,11 +51,14 @@ Form::macro('bsYearNav', function ($paramz) {
 	$parz['anno']=date('Y', $time_next);
 	$route_next=route($routename, $parz);
 	
-	$html='<ul class="pager">
-	<li class="previous"><a href="'.$route_prev.'">&laquo;'.($anno-1).'</a></li>
-	<li class="current"><a href="'.$route_curr.'">'.($anno).' </a></li>
-	<li class="next"><a href="'.$route_next.'">'.($anno+1) .' &raquo; </a></li>
-	</ul>';
+	$html='<nav aria-label="year_nav">
+	<ul class="pager pagination justify-content-center">
+	<li class="previous page-item"><a class="page-link" href="'.$route_prev.'">&laquo;'.($anno-1).'</a></li>
+	<li class="current page-item active"><a class="page-link" href="'.$route_curr.'">'.($anno).' </a></li>
+	<li class="next page-item"><a class="page-link" href="'.$route_next.'">'.($anno+1) .' &raquo; </a></li>
+	</ul>
+	</nav>';
+
 	return $html;
 });
 
@@ -268,7 +271,7 @@ Form::macro('bsBtnEdit', function ($extra, $from='index', $to='edit') {
 	if (isset($extra['class'])) {
 		$class.=' '.$extra['class'];
 	}
-	return '<a class="'.$class.'" href="'.$route.'" data-toggle="tooltip" title="Modifica"><i class="fa fa-pencil fa-fw" aria-hidden="true"></i></a>';
+	return '<a class="'.$class.'" href="'.$route.'" data-toggle="tooltip" title="Modifica"><i class="fa fa-pencil fa-fw far fa-edit" aria-hidden="true"></i></a>';
 });
 
 
@@ -277,7 +280,7 @@ Form::macro('bsBtnClone', function ($extra, $from='index', $to='edit' /*$to='rep
 	$params=array_merge($params, $extra);
 	$params['replicate']=1;
 	$route=route(str_replace('.'.$from, '.'.$to, Request::route()->getName()), $params);
-	return '<a class="btn btn-small btn-warning" href="'.$route.'"  data-toggle="tooltip" title="Duplica"><i class="fa fa-clipboard fa-fw" aria-hidden="true"></i></a>';
+	return '<a class="btn btn-small btn-warning" href="'.$route.'"  data-toggle="tooltip" title="Duplica"><i class="fa fa-clipboard fa-fw far fa-clone" aria-hidden="true"></i></a>';
 });
 
 Form::macro('bsBtnDelete', function ($extra) {
@@ -315,7 +318,7 @@ Form::macro('bsBtnDelete', function ($extra) {
 	/*-- sweetalert 1
 	return '<a class="'.$class.'" href="#" data-token="'. csrf_token() .'" data-id="'.$id.'" data-href="'.$route.'" data-toggle="tooltip" title="Cancella"><i class="fa fa-trash-o fa-fw" aria-hidden="true"></i></a>';
 	*/
-	$html='<a class="'.$class.'" data-delete="" data-toggle="tooltip" title="Cancella" data-title="Sei Sicuro ?" data-message="di volere cancellare " data-button-text="cancella" data-id="'.$id.'" href="#" data-href="'.$route.'"><i class="fa fa-trash-o fa-fw" aria-hidden="true"></i></a>';
+	$html='<a class="'.$class.'" data-delete="" data-toggle="tooltip" title="Cancella" data-title="Sei Sicuro ?" data-message="di volere cancellare " data-button-text="cancella" data-id="'.$id.'" href="#" data-href="'.$route.'"><i class="fa fa-trash-o fa-fw far fa-trash" aria-hidden="true"></i></a>';
 	return $html;
 });
 
